@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import Header from './Component/header/Header';
+import Content from './Component/content/Content';
+import Footer from './Component/footer/Footer';
+import { useState } from 'react';
+
+
+//import { useState } from 'react';
 
 function App() {
+  
+  const [list, setList] = useState([])
+  const [typelist, setTypelist] = useState("")
+ // console.log(list);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='body'>
+      <div className='container'>
+        <Header setList={setList}/>
+        <Content list={list} setList={setList} typelist={typelist}/>
+        <Footer list={list} setList={setList} setTypelist={setTypelist}/>
+      </div>
+
     </div>
   );
 }
+
 
 export default App;

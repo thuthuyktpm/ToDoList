@@ -1,0 +1,14 @@
+.wrapper-header {
+    padding: 16px;
+    
+}
+
+.header-but{
+    height: 40px;
+
+}
+input{
+    height: 50px;
+    width: 84%;
+    font-weight: 300;
+}

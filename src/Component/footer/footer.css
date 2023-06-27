@@ -1,0 +1,14 @@
+
+.but3{
+    margin-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.but1{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.footer{
+    
+    display: flex;
+}
