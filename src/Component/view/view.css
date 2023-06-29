@@ -1,0 +1,21 @@
+.checkbox{
+    height: 20px;
+    width: 20px;
+}
+
+.completed {
+    margin-left: 30px;
+    text-decoration: line-through; 
+    opacity: 0.5; 
+  }
+
+li div{
+    margin-left: 30px;
+}
+li{
+    padding: 16px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    list-style-type: none;
+    display: flex;
+}
