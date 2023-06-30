@@ -1,17 +1,29 @@
 import "./header.css";
-import { useState } from "react";
 import { nanoid } from "nanoid";
-import { useEffect, useRef } from "react";
-const Header = ({ setList }) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    ref.current.focus();
-  }, []);
+import { useState } from "react";
+const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef }) =>{
   const [value, setValue] = useState("");
-  const handleSave = (value) => {
-    setList((prev) => [...prev, value]);
-    setValue("");
+
+  const handleSave = () => {
+    if(select){
+      // edit
+      const newTodo = {
+        ...select,
+        content: value,
+      }
+      handleSaveEdit(newTodo);
+      setValue('');
+      setSelect('');
+    }else{
+      // add
+      const newTodo = {
+        id: nanoid(),
+        content: value,
+        isComplete: false,
+      }
+      onSaveList(newTodo);
+      setValue('');
+    }
   };
 
   return (
@@ -19,7 +31,7 @@ const Header = ({ setList }) => {
       <div className="icon"></div>
 
       <input
-        ref={ref}
+        ref={headerRef}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter work"
@@ -34,5 +46,5 @@ const Header = ({ setList }) => {
       </button>
     </div>
   );
-};
+}
 export default Header;

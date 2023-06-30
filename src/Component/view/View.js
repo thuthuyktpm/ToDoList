@@ -1,69 +1,36 @@
-
 import "./view.css";
 
-const View = ({handleCheck,
-  handleSave,
+const View = ({
+  handleCheck,
   handleDelete,
-  handleDoubleClick,
-  handleFix,
-  text,
   value,
-  select,
-  setText,
-  list,
-  setList,
-  selectedValue
-})=> {
-  
-  //debugger
- 
+  onEdit
+}) => {
+  const handleEdit = (value) => {
+    onEdit(value)
+  };
+
   return (
-
-
     <li key={value.id}>
-      {selectedValue === value ? (
-        <>
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={value.isComplete}
-            onChange={() => handleCheck(value.id)}
-          />
-          <div
-            className={value.isComplete ? "completed" : ""}
-            onDoubleClick={() => handleDoubleClick(value)}
-          >
-            {value.content}
-          </div>
-          <button className="contain-but" onClick={() => handleFix(value)}>
-            Sửa
-          </button>
-          <button className="contain-but" onClick={() => handleDelete(value)}>
-            Xoá
-          </button>
-        </>
-      ) : (
-        <>
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={value.isComplete}
-            onChange={() => handleCheck(value.id)}
-          />
-          <div
-            className={value.isComplete ? "completed" : ""}
-            onDoubleClick={() => handleDoubleClick(value)}
-          >
-            {value.content}
-          </div>
-          <button className="contain-but" onClick={() => handleFix(value)}>
-            Sửa
-          </button>
-          <button className="contain-but" onClick={() => handleDelete(value)}>
-            Xoá
-          </button>
-        </>
-      )}
+      <>
+        <input
+          className="checkbox"
+          type="checkbox"
+          checked={value.isComplete}
+          onChange={() => handleCheck(value.id)}
+        />
+        <div
+          className={value.isComplete ? "completed" : ""}
+        >
+          {value.content}
+        </div>
+        <button className="contain-but" onClick={() => handleEdit(value)}>
+          Sửa
+        </button>
+        <button className="contain-but" onClick={() => handleDelete(value)}>
+          Xoá
+        </button>
+      </>
     </li>
   );
 };
