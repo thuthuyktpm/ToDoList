@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef }) =>{
   const [value, setValue] = useState("");
+  headerRef.current=setValue;
 
   const handleSave = () => {
     if(select){
@@ -31,7 +32,7 @@ const Header = ({ onSaveList,select,setSelect, handleSaveEdit, headerRef }) =>{
       <div className="icon"></div>
 
       <input
-        ref={headerRef}
+       
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter work"

@@ -10,8 +10,9 @@ const View = ({
     onEdit(value)
   };
 
+
   return (
-    <li key={value.id}>
+    <li key={value.id} >
       <>
         <input
           className="checkbox"

@@ -1,12 +1,31 @@
 .body {
   position: relative;
   height: 100vh;
+ 
+
 }
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color:white;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+#dark{
+  background-color: black;
+  color: white;
+}
+
+#light{
+  background-color: white;
+  color: black;
+}
+
+#dark .container{
+  background-color:white;
+}
+
+#light .container{
+  background: color #333;;
 }

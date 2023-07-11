@@ -3,13 +3,20 @@ import "./App.css";
 import Header from "./Component/header/Header";
 import Content from "./Component/content/Content";
 import Footer from "./Component/footer/Footer";
-import { useState, useRef } from "react";
+import Theme from "./Component/theme/theme";
+import { useState, useRef, createContext } from "react";
+import Pagination from "./Component/pagination/pagination";
+
+export const ThemeContext = createContext()
+
 
 function App() {
   const [list, setList] = useState([]);
   const [typelist, setTypelist] = useState("");
   const [select, setSelect] = useState("");
   const headerRef = useRef(null);
+  const [theme, setTheme] = useState('light');
+  const [currentList,setCurrentList] = useState([]);
 
   const handleDelete = (index) => {
     let newList = [...list];
@@ -34,7 +41,7 @@ function App() {
 
   // edit todo
   const handleEditList = (value) => {
-    headerRef.current.value = value.content;
+    headerRef.current(value.content);
     setSelect(value);
   };
 
@@ -47,35 +54,42 @@ function App() {
     };
     setList(newList);
   }
+  const toggletheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   return (
-    <div className="body">
-      <div className="container">
-        <Header
-          headerRef={headerRef}
-          list={list}
-          setList={setList}
-          onSaveList={handleSaveList}
-          //editList ={editList}
-          select ={select}
-          setSelect = {setSelect}
-          handleSaveEdit={handleSaveEdit}
-        />
-        <Content
-          list={list}
-          setList={setList}
-          typelist={typelist}
-          handleDelete={handleDelete}
-          handleCheck={handleCheck}
-          onEditList={handleEditList}
-           
-        />
-        <Footer list={list} setList={setList} setTypelist={setTypelist} />
+    <ThemeContext.Provider value={theme}>
+      <div className="body" id={theme}>
+        <div className="container ">
+          <Header
+            headerRef={headerRef}
+            list={list}
+            setList={setList}
+            onSaveList={handleSaveList}
+            //editList ={editList}
+            select={select}
+            setSelect={setSelect}
+            handleSaveEdit={handleSaveEdit}
+          />
+          <Content
+            list={currentList}
+            setList={setList}
+            typelist={typelist}
+            handleDelete={handleDelete}
+            handleCheck={handleCheck}
+            onEditList={handleEditList}
+
+          />
+          <Footer list={list} setList={setList} setTypelist={setTypelist} />
+          
+          <Pagination list={list} setCurrentList={setCurrentList} />
+          <Theme toggletheme={toggletheme} />
+        </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
-
 export default App;
 
 /*luôn luôn chạy

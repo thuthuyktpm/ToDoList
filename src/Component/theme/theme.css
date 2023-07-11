@@ -1,0 +1,8 @@
+#dark .but2{
+    color: white;
+    background-color: black;
+}
+
+#light .but2{
+    background-color: white;
+}
